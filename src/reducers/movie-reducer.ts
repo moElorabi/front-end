@@ -1,4 +1,9 @@
-import { ActionTypes, GET_MOVIE, SET_MOVIE } from "../actions/movie-action";
+import {
+  ActionTypes,
+  GET_MOVIE,
+  SET_MOVIE,
+  SELECTED_MOVIE,
+} from "../actions/movie-action";
 import { initialState } from "../initial-state";
 
 const movieReducer = (state = initialState.movie, action: ActionTypes) => {
@@ -8,9 +13,7 @@ const movieReducer = (state = initialState.movie, action: ActionTypes) => {
     case SET_MOVIE:
       return {
         ...state,
-        title: action.payload.title,
-        date: action.payload.date,
-        poster: action.payload.poster,
+        allData: action.payload,
         loading: false,
       };
     default:

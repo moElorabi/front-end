@@ -10,13 +10,7 @@ export default function FreeSoloCreateOption() {
   const handleSearch = async (newValue: String | null) => {
     dispatch(getMovie());
     const res = await searchMovie(newValue);
-    let payload = {
-      title: res.data.Title,
-      date: res.data.Released,
-      poster: res.data.Poster,
-      loading: false,
-    };
-    dispatch(setMovie(payload));
+    dispatch(setMovie(res.data));
   };
 
   return (

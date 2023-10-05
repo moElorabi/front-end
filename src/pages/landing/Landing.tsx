@@ -4,24 +4,28 @@ import { useSelector } from "react-redux";
 import Loading from "../../components/Loading";
 const Landing: React.FC = () => {
   const data = useSelector((state: any) => state.movie);
-  console.log([data]);
   return (
     <div className="landing-page">
       <Search />
       {data.loading ? (
         <Loading />
-      ) : data.title ? (
+      ) : data.allData?.Title ? (
         data &&
-        [data].map((e: any, key) => {
+        [data.allData].map((e: any, key) => {
           return (
             <div key={key}>
               {" "}
-              <MovieCard title={e.title} date={e.date} poster={e.poster} />{" "}
+              <MovieCard
+                title={e.Title}
+                date={e.Released}
+                poster={e.Poster}
+                allData={data}
+              />{" "}
             </div>
           );
         })
       ) : (
-        "No data"
+        <p className="no-data">No data</p>
       )}
     </div>
   );

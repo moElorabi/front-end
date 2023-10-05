@@ -1,3 +1,32 @@
 .landing-page {
     margin: 20px;
 }
+.landing-page > div {
+    margin: 20px;
+}
+.movie-div{
+    display: flex
+}
+
+.movie-div > div{
+    width: 50%;
+    height: 85vh;
+    margin: 20px;
+}
+
+.time-div {
+    color: gray;
+    font-weight: bold;
+}
+
+.title {
+color: gray;
+font-weight: bold;
+}
+.cast-div {
+    display: flex;
+}
+
+.no-data {
+    text-align: center;
+}

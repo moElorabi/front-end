@@ -20,7 +20,7 @@ const NavBar: React.FC<NavBarProps> = ({ title }) => {
 const Layout = () => {
   return (
     <div>
-      <NavBar title={"What's in"} />
+      <NavBar title={"Movie library"} />
       <Outlet />
     </div>
   );

@@ -1,5 +1,5 @@
-import { CounterState } from "../initial-state";
+import { InitialState } from "../initial-state";
 
 export interface RootState {
-  counter: CounterState;
+  movie: InitialState;
 }

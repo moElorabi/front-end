@@ -1,8 +1,4 @@
-export interface InitialState {
-  movie: {
-    allData: {} | null;
-  };
-}
+import { InitialState } from "./types/interfaces";
 
 export const initialState: InitialState = {
   movie: {

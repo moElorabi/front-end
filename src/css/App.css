@@ -12,6 +12,7 @@
     width: 50%;
     height: 85vh;
     margin: 20px;
+    box-shadow: none;
 }
 
 .time-div {
@@ -29,4 +30,8 @@ font-weight: bold;
 
 .no-data {
     text-align: center;
+}
+
+.pointer {
+    cursor: pointer;
 }

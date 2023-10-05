@@ -1,9 +1,4 @@
-import {
-  ActionTypes,
-  GET_MOVIE,
-  SET_MOVIE,
-  SELECTED_MOVIE,
-} from "../actions/movie-action";
+import { ActionTypes, GET_MOVIE, SET_MOVIE } from "../actions/movie-action";
 import { initialState } from "../initial-state";
 
 const movieReducer = (state = initialState.movie, action: ActionTypes) => {

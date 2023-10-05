@@ -1,23 +1,24 @@
 import React from "react";
 import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
 import { useSelector } from "react-redux";
+import { extractYearFromDate } from "../../utils/utils-functions";
 
 const Movie: React.FC = () => {
   const data = useSelector((state: any) => state.movie);
-  return (
+
+  return data.allData ? (
     <div className="movie-div">
       <div>
         <div className="time-div">
           <p>
-            {data.allData.Runtime} | {data.allData.Released} |{" "}
-            {data.allData.Rated}
+            {data.allData.Runtime} |{" "}
+            {extractYearFromDate(data.allData.Released)} | {data.allData.Rated}
           </p>
         </div>
         <h1>{data.allData.Title}</h1>
-        <p>IMBD Rating {data.allData.imdbRating}</p>
+        <p className="title">IMBD Rating</p>
+        <p>{data.allData.imdbRating}</p>
         <p className="title">Plot</p>
         <p>{data.allData.Plot}</p>
         <p className="title">Cast</p>
@@ -30,12 +31,14 @@ const Movie: React.FC = () => {
       <Card>
         <CardMedia
           component="img"
-          height="auto" // Adjust the height as needed
-          image={data.allData.Poster} // Replace with your image URL
+          height="auto"
+          image={data.allData.Poster}
           alt="Poster"
         />
       </Card>
     </div>
+  ) : (
+    <p className="no-data">No data</p>
   );
 };
 

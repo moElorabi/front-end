@@ -1,17 +1,13 @@
-import * as React from "react";
 import { useDispatch } from "react-redux";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import { searchMovie } from "../services/search-service";
-import { getMovie, setMovie } from "../actions/movie-action";
+import { setSearchWord } from "../actions/market-action";
 
-export default function FreeSoloCreateOption() {
+const SearchBar = () => {
   const dispatch = useDispatch();
 
   const handleSearch = async (newValue: String | null) => {
-    dispatch(getMovie());
-    const res = await searchMovie(newValue);
-    dispatch(setMovie(res.data));
+    dispatch(setSearchWord(newValue));
   };
 
   return (
@@ -20,11 +16,15 @@ export default function FreeSoloCreateOption() {
       selectOnFocus
       clearOnBlur
       handleHomeEndKeys
-      id="free-solo-with-text-demo"
+      id="search"
       options={[]}
-      sx={{ width: "auto" }}
+      sx={{ width: 300 }}
       freeSolo
-      renderInput={(params) => <TextField {...params} label="Search movies" />}
+      renderInput={(params) => (
+        <TextField {...params} label="Press enter to search" />
+      )}
     />
   );
-}
+};
+
+export default SearchBar;

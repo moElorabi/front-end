@@ -1,36 +1,65 @@
-import React from "react";
-import { AppBar, Toolbar, Typography } from "@mui/material";
-import { Outlet, useNavigate } from "react-router-dom";
-import { NavBarProps } from "../types/interfaces";
+import { Toolbar, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import { useDispatch, useSelector } from "react-redux";
+import { setDrawer } from "../actions/market-action";
+import { drawerWidth } from "../utils/constants";
 
-const NavBar: React.FC<NavBarProps> = ({ title }) => {
-  let navigate = useNavigate();
+interface AppBarProps extends MuiAppBarProps {
+  open?: boolean;
+}
 
-  const handlOnClick = () => {
-    navigate("/");
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== "open",
+})<AppBarProps>(({ theme, open }) => ({
+  transition: theme.transitions.create(["margin", "width"], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: `${drawerWidth}px`,
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+}));
+
+const Navbar = () => {
+  const dispatch = useDispatch();
+  const open = useSelector((state: any) => state.market.drawerIsOpen);
+  const cart = useSelector((state: any) => state.market.cart);
+
+  const handleDrawerOpen = () => {
+    dispatch(setDrawer(true));
   };
-  return (
-    <AppBar position="static">
-      <Toolbar>
-        <Typography
-          variant="h6"
-          component="div"
-          onClick={handlOnClick}
-          className="pointer"
-        >
-          {title}
-        </Typography>
-      </Toolbar>
-    </AppBar>
-  );
-};
 
-const Layout = () => {
   return (
     <div>
-      <NavBar title={"Movie library"} />
-      <Outlet />
+      <AppBar position="fixed" open={open}>
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            sx={{ mr: 2, ...(open && { display: "none" }) }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <div className="header">
+            <Typography variant="h6" noWrap component="div">
+              SHOPY
+            </Typography>
+            <Typography>Cart ({cart.length})</Typography>
+          </div>
+        </Toolbar>
+      </AppBar>
     </div>
   );
 };
-export default Layout;
+
+export default Navbar;

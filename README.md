@@ -11,3 +11,7 @@ then run
 if you wann build it, run
 
 ### `npm build`
+
+to run unit testing, run
+
+### `npm test`

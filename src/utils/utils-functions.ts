@@ -1,8 +1,17 @@
-export function extractYearFromDate(dateString: string) {
-  const dateParts = dateString.split(" ");
-  if (dateParts.length === 3) {
-    return parseInt(dateParts[2], 10);
-  } else {
-    throw new Error("Invalid date format");
-  }
-}
+export const filterByCategory = (products: any, category: string) => {
+  return (
+    products &&
+    products.filter((product: any) =>
+      category === "All" ? products : product.category === category
+    )
+  );
+};
+
+export const filterBySearchWord = (products: any, searchWord: string) => {
+  return (
+    products &&
+    products.filter((product: any) =>
+      product.title.toLowerCase().includes(searchWord.toLowerCase())
+    )
+  );
+};

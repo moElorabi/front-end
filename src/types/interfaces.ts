@@ -1,9 +1,22 @@
 export interface InitialState {
-  movie: {
-    allData: {} | null;
-  };
+  drawer: Drawer;
+  category: string;
+  productsIsLoading: boolean;
+  categoryIsLoading: boolean;
+  searchWord: string | null;
+  cart: [];
 }
 
 export interface NavBarProps {
-  title: string;
+  open?: boolean;
+  handleDrawerOpen?: () => void;
+}
+
+export interface Drawer {
+  drawerIsOpen: boolean;
+}
+
+export interface ProductCardProps {
+  name: string;
+  img: string;
 }
